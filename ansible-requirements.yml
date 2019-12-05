@@ -1,0 +1,7 @@
+---
+# vim: set ft=ansible:
+
+
+- name: ansible-mtg
+  src: https://github.com/9seconds/ansible-mtg.git
+  version: master

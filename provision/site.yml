@@ -1,0 +1,23 @@
+---
+# vim: set ft=yaml.ansible:
+
+
+- hosts: all
+  become: true
+  gather_facts: false
+  tasks:
+    - name: install ansible dependencies
+      raw: >
+        sh -c
+        'command -v python >/dev/null || (apt-get -q update && apt-get install -q -y --no-install-recommends aptitude python python-apt python3-apt)'
+      changed_when: false
+
+- hosts: all
+  become: true
+  environment:
+    LANG: C.UTF-8
+    LC_ALL: C.UTF-8
+    DEBIAN_FRONTEND: noninteractive
+  gather_facts: true
+  roles:
+    - ansible-mtg
